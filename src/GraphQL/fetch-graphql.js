@@ -2,7 +2,7 @@ async function fetchGraphQL(gqlQuery, params) {
   let v = { loading: false, response: '200', value: '' };
 
   try {
-    const response = await fetch('http://localhost:4000/books', {
+    const response = await fetch('http://localhost:4001/books', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

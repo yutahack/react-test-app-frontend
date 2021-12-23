@@ -16,17 +16,18 @@ function BooksTable() {
   useEffect(async () => {
     const result = await fetchGraphQL(query, { title: '' });
     console.log('result: ', result);
-    pushRows();
     if ('200' == result.response) {
       if (result.value.data) {
         setBooks(result.value.data.Books);
-
-        pushRows();
       }
     } else {
       console.log('Fetch GQL Error!= ', result.value);
     }
   }, []);
+
+  useEffect(async () => {
+    pushRows();
+  }, [books]);
 
   const pushRows = () => {
     var tmp = [];
