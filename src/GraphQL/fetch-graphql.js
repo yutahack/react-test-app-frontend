@@ -1,15 +1,10 @@
-const dev = require('../config/dev');
+const config = require('../config/consts');
 
 async function fetchGraphQL(gqlQuery, params) {
   let v = { loading: false, response: '200', value: '' };
 
   // GraphQL 접속을 위한 URL 정의
-  let gql_remote = '';
-  if (true === dev.IS_LOCAL_MODE) {
-    gql_remote = 'http://localhost:4001/books';
-  } else {
-    gql_remote = dev.REMOTE_SERVER_ADDRESS + '/books';
-  }
+  let gql_remote = config.REMOTE_SERVER_ADDRESS;
   console.log('Gql fetch URI= ', gql_remote);
 
   try {

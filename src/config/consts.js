@@ -1,0 +1,5 @@
+const REMOTE_SERVER_ADDRESS = process.env.REACT_APP_REMOTE_SERVER_ADDRESS;
+
+module.exports = {
+  REMOTE_SERVER_ADDRESS,
+};
