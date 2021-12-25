@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import fetchGraphQL from '../GraphQL/fetch-graphql';
+import fetchGraphQL from '../graphQL/fetch-graphql';
 import BooksRow from './BooksRow';
 
 function BooksTable() {

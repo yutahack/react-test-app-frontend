@@ -5,7 +5,7 @@ async function fetchGraphQL(gqlQuery, params) {
 
   // GraphQL 접속을 위한 URL 정의
   let gql_remote = config.REMOTE_SERVER_ADDRESS;
-  console.log('Gql fetch URI= ', gql_remote);
+  // console.log('Gql fetch URI= ', gql_remote);
 
   try {
     const response = await fetch(gql_remote, {
