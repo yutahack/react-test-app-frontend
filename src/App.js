@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import BooksTable from './Books/BooksTable';
 import Router from './router';
 
 function App() {

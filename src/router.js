@@ -1,14 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './views/login/login';
+import Main from './views/main/main';
+import PrivateRouter from './privateRouter';
 
-const router = () => {
+const Router = () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: '1rem', color: 'white' }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+          <Route path="/a" element={<PrivateRouter />} />
           <Route path="/" element={<></>} />
-          <Route path="/signin" element={<Login />} />
+          <Route path="/Signin" element={<Login />} />
+          <Route path="/Main" element={<Main />} />
           <Route
             path="/test"
             element={
@@ -17,18 +29,10 @@ const router = () => {
               </>
             }
           />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: '1rem' }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
         </Routes>
       </BrowserRouter>
     </>
   );
 };
 
-export default router;
+export default Router;
