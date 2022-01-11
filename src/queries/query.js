@@ -26,4 +26,35 @@ const UserLogin = async (args) => {
   return result;
 };
 
-export default { UserLogin };
+const GetProductList = async (args) => {
+  const q = `
+        query GetProductList($offset:Int, $limit:Int, $conditions:GetProductListConditions!){
+            GetProductList(offset:$offset, limit: $limit, conditions:$conditions){
+                error,
+                result{
+                    prd_code,
+                    prd_name,
+                    prd_type,
+                    prd_price,
+                    insert_date,
+                    insert_user
+                }
+            }
+        }
+    `;
+
+  const p = { offset: args.offset, limit: args.limit, conditions: args.conditions };
+  const result = await fetchGraphQL(q, p);
+  console.log('RESULT', result);
+  //   console.log('result: ', result);
+  //   if ('200' == result.response) {
+  //     if (result.value.data) {
+  //       setBooks(result.value.data.Books);
+  //     }
+  //   } else {
+  //     console.log('Fetch GQL Error!= ', result.value);
+  //   }
+  return result;
+};
+
+export default { UserLogin, GetProductList };

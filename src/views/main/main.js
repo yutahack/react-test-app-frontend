@@ -40,7 +40,7 @@ const Main = () => {
                 bg={'gray.50'}
                 height={'620px'}
                 mt={'25px'}
-                mb={'5vh'}
+                mb={'25px'}
                 w={'500px'}
                 rounded={'15px'}
                 boxShadow={'inner'}
