@@ -22,8 +22,9 @@ import useLocalStorage from '../../utils/local-storage';
 
 const MainApp = () => {
   const toast = useToast();
+  // Global cart list
   const [cartList, setCartList] = useState([]);
-  const [inCart, setInCart] = useLocalStorage('inCart', []);
+  const [localCartList, setLocalCartList] = useLocalStorage('localCartList', []);
 
   const showToast = async (props) => {
     toast.closeAll();
@@ -47,6 +48,7 @@ const MainApp = () => {
     <></>;
     // setInCart([{ id: 0, prd_code: '0001', prd_name: 'Hamburger01', prd_price: '1000' }]);
     console.log('uE-main-apps changed', cartList);
+    setLocalCartList(cartList);
   }, [cartList]);
 
   return (

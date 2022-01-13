@@ -39,7 +39,7 @@ const ProductCard = (props) => {
   const [shakeAnimation, setShakeAnimation] = useState(false);
   const [shake, setShake] = useState(false);
   const [showWarnMessage, setShowWarnMessage] = useState(false);
-  const [lsCart, setLsCart] = useLocalStorage('inCart', []);
+  //   const [lsCart, setLsCart] = useLocalStorage('inCart', []);
 
   const BuyModalMessage = (props) => {
     // console.log('clicked', removePrdSeq);
@@ -183,15 +183,19 @@ const ProductCard = (props) => {
             });
           }
           props.cartState.setCartList(tmp);
-          setLsCart(tmp);
+          //   setLsCart(tmp);
 
           setItemNumber(1);
           onCloseBuyModal();
           //   setShowWarnMessage(false);
         } else {
           //에러가 뜬 상태에서 두번 누르면 다시 흔들기
-          setShowWarnMessage(false);
-          setShowWarnMessage(true);
+          if (!showWarnMessage) {
+            setShowWarnMessage(true);
+          } else {
+            setShakeAnimation(true);
+            setShowWarnMessage(true);
+          }
         }
         break;
 
@@ -204,9 +208,7 @@ const ProductCard = (props) => {
   };
 
   useEffect(() => {
-    if (showWarnMessage) {
-      setShakeAnimation(true);
-    }
+    setShakeAnimation(true);
   }, [showWarnMessage]);
 
   useEffect(() => {

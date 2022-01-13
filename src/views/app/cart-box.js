@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Flex,
@@ -34,12 +35,15 @@ import YnModal from '../modal/yn-modal';
 import { priceToString } from '../../utils/utils';
 import CustomButton from '../../components/custom-button';
 import useLocalStorage from '../../utils/local-storage';
+import { useNavigate } from 'react-router-dom';
 
-var removePrdSeq = 0;
+// var removePrdSeq = 0;
 const CartBox = (props) => {
   const [inCart, setInCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const { isOpen: isOpenYnModal, onOpen: onOpenYnModal, onClose: onCloseYnModal } = useDisclosure();
+  var removePrdSeq = 0;
+  let navigate = useNavigate();
   //   const removePrdInfo = { prd_code: '', prd_name: '', prd_price: '', prd_img: '' };
   //   const [inCart, setInCart] = useLocalStorage('inCart', '');
 
@@ -172,11 +176,11 @@ const CartBox = (props) => {
 
     // Calc total place
     let totalPrice = 0;
-    inCart.map((value, index) => {
+    props.cartState.cartList.map((value, index) => {
       totalPrice += parseInt(value.prd_price);
     });
     setTotalPrice(totalPrice);
-  }, []);
+  }, [props.cartState.cartList]);
 
   const BuyButton = () => {
     return (
@@ -203,6 +207,15 @@ const CartBox = (props) => {
           }}
           _focus={{
             boxShadow: '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+          }}
+          //   onClick={() => {
+          //     // <Link to="/purchase"></Link>;
+          //     console.log('a');
+          //     return <Link to="/test"></Link>;
+          //   }}
+          onClick={() => {
+            navigate('/signin');
+            console.log(navigate);
           }}
         >
           <Flex direction="column">
