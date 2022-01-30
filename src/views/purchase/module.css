@@ -1,0 +1,8 @@
+.content1 {
+  transition: height 0.2s;
+  height: 40px;
+
+  &.high {
+    height: 300px;
+  }
+}

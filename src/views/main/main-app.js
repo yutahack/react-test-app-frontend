@@ -54,7 +54,7 @@ const MainApp = () => {
   return (
     <>
       <div>
-        <Flex h={'80vh'} direction={'column'} pl="10px" pr="10px">
+        <Flex direction={'column'} width={'500px'} pl="10px" pr="10px">
           <ProductsSwiper cartState={{ cartList: cartList, setCartList: setCartList }} />
           <CartBox
             cartState={{ cartList: cartList, setCartList: setCartList }}

@@ -214,7 +214,7 @@ const CartBox = (props) => {
           //     return <Link to="/test"></Link>;
           //   }}
           onClick={() => {
-            navigate('/signin');
+            navigate('/Purchase');
             console.log(navigate);
           }}
         >

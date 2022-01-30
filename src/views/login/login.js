@@ -85,8 +85,14 @@ const Login = () => {
 
   return (
     <>
-      <Flex height={'100vh'} alignItems={'center'} justifyContent={'center'}>
-        <Box width={'50vw'} maxWidth={'500px'} boxShadow={'dark-lg'} bg={'gray.50'} rounded={'md'}>
+      <Flex
+        height={'100%'}
+        w="500px"
+        alignItems={'center'}
+        justifyContent={'center'}
+        alignContent={'center'}
+      >
+        <Box width={'70%'} maxWidth={'500px'} boxShadow={'dark-lg'} bg={'gray.50'} rounded={'md'}>
           <Flex direction={'column'} p={50} rounded={10}>
             <Heading size={'md'} mb={5} color={'black'} textAlign={'center'}>
               Sign in

@@ -14,16 +14,16 @@ import {
 } from '@chakra-ui/react';
 import './style.css';
 import MainApp from './main-app';
+import Login from '../login/login';
 
 const Main = () => {
   //
 
   return (
     <>
-      <div className="Main">
-        <Flex height={'1000px'} justifyContent={'center'} pt="35px">
+      {/* <div className="Main">
+        <Flex height={'100vh'} justifyContent={'center'} pt="35px">
           <Box
-            h="550px"
             bg={'gray.200'}
             w={'550px'}
             height={'90vh'}
@@ -44,13 +44,14 @@ const Main = () => {
                 w={'500px'}
                 rounded={'15px'}
                 boxShadow={'inner'}
-              >
-                <MainApp />
+              > */}
+      <MainApp />
+      {/* <Login />
               </Box>
             </Flex>
           </Box>
         </Flex>
-      </div>
+      </div> */}
     </>
   );
 };

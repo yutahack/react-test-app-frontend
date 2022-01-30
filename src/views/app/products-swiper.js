@@ -238,19 +238,19 @@ const ProductSwiper = (props) => {
             </>
           ) : (
             <TabPanels>
-              <TabPanel h="800px" p="0px">
+              <TabPanel p="0px">
                 <Swiper pagination={true} className="mySwiper">
                   {AddProducts({ prd_type: 'PT0001', cartState: props.cartState })}
                 </Swiper>
               </TabPanel>
-              <TabPanel h="400px" p="0px">
+              <TabPanel p="0px">
                 <Flex width="100%" pl="0">
                   <Swiper pagination={true} className="mySwiper">
                     {AddProducts({ prd_type: 'PT0002', cartState: props.cartState })}
                   </Swiper>
                 </Flex>
               </TabPanel>
-              <TabPanel h="400px" p="0px">
+              <TabPanel p="0px">
                 <Flex width="100%" pl="0">
                   <Swiper pagination={true} className="mySwiper">
                     {AddProducts({ prd_type: 'PT0003', cartState: props.cartState })}
