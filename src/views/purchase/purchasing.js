@@ -23,6 +23,7 @@ import {
   buildStyles,
 } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useNavigate } from 'react-router-dom';
 
 // Animation
 import { easeQuadInOut } from 'd3-ease';
@@ -30,7 +31,12 @@ import { easeQuadInOut } from 'd3-ease';
 import ChangingProgressProvider from './ProgressProviders/ChangingProgressProvider';
 
 const Purchasing = () => {
-  useEffect(() => {}, []);
+  let navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('/Success');
+    }, 4 * 1000);
+  }, []);
 
   return (
     <>

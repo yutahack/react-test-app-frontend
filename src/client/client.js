@@ -12,4 +12,19 @@ const getProductList = async (args) => {
   return r;
 };
 
-export default { getProductList };
+const getTrHistory = async (args) => {
+  let conditions = {
+    tr_no: args.tr_no,
+    pay_method: args.pay_method,
+    del_yn: args.del_yn,
+  };
+  const r = await query.GetTrHistory({
+    offset: args.offset,
+    limit: args.limit,
+    conditions: conditions,
+  });
+
+  return r;
+};
+
+export default { getProductList, getTrHistory };

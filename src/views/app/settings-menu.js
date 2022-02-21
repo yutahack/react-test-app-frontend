@@ -21,8 +21,10 @@ import {
 } from '@chakra-ui/react';
 import './style.css';
 import { FcSettings } from 'react-icons/fc';
+import { useNavigate } from 'react-router-dom';
 
 const SettingsMenu = () => {
+  let navigate = useNavigate();
   //
   //
   return (
@@ -48,6 +50,9 @@ const SettingsMenu = () => {
             h="40px"
             mt="5px"
             rounded="full"
+            onClick={() => {
+              navigate('/Admin/Password');
+            }}
           >
             <FcSettings size="20px" />
           </Button>

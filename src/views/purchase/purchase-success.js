@@ -18,6 +18,7 @@ import {
 
 import 'react-circular-progressbar/dist/styles.css';
 import { Transition, animated, useSpring } from 'react-spring';
+import { useNavigate } from 'react-router-dom';
 
 const Success = () => {
   const AnimatedTitle = () => {
@@ -62,7 +63,12 @@ const Success = () => {
     );
   };
 
-  useEffect(() => {}, []);
+  let navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('/Main');
+    }, 3 * 1000);
+  }, []);
   const props = useSpring({
     to: [
       { opacity: 1, color: 'black' },

@@ -8,15 +8,21 @@ const CustomButton = (props) => {
         as="button"
         w={props.w}
         h={props.h}
+        m={props.m}
         mr={props.mr}
         ml={props.ml}
         mt={props.mt}
         mb={props.mb}
         boxShadow="base"
-        borderRadius="10px"
         border="white"
         borderWidth="10px"
-        borderRadius="full"
+        borderRadius={() => {
+          if (undefined === props.br || '' === props.br || 'full' === props.br) {
+            return 'full';
+          } else {
+            return props.br;
+          }
+        }}
         color="white"
         background={props.color}
         lineHeight="1.2"

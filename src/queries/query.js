@@ -57,4 +57,29 @@ const GetProductList = async (args) => {
   return result;
 };
 
-export default { UserLogin, GetProductList };
+const GetTrHistory = async (args) => {
+  const q = `
+      query GetTrHistory($offset:Int, $limit:Int, $conditions:GetTrHistoryConditions!){
+        GetTrHistory(offset:$offset, limit: $limit, conditions:$conditions){
+          error,
+          result{
+            seq,
+            tr_no,
+            tr_date,
+            amount,
+            pay_method,
+            del_yn
+          }
+        }
+      }
+    `;
+
+  const p = { offset: args.offset, limit: args.limit, conditions: args.conditions };
+  const result = await fetchGraphQL(q, p);
+
+  console.log('RESULT', result);
+
+  return result;
+};
+
+export default { UserLogin, GetProductList, GetTrHistory };

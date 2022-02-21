@@ -37,6 +37,7 @@ import 'swiper/css/pagination';
 // import Swiper core and required modules
 import SwiperCore, { Pagination } from 'swiper';
 import SettingsMenu from './settings-menu';
+import { useNavigate } from 'react-router-dom';
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
@@ -48,6 +49,7 @@ const lsOverride = css`
 `;
 
 const ProductSwiper = (props) => {
+  let navigate = useNavigate();
   const [prodcutList, setProdcutList] = useState([]);
   const [productListLoadingState, setProductListLoadingState] = useState(true);
 
