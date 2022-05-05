@@ -5,12 +5,14 @@ import CustomButtonR from '../../components/custom-button-r';
 import CustomButton from '../../components/custom-button';
 import { useNavigate } from 'react-router-dom';
 import CustomTable from '../../components/custom-table';
-import client from '../../client/client';
+import client, { sequencer } from '../../client/client';
 import PuffLoader from 'react-spinners/PuffLoader';
 import CustomPagination from '../../components/custom-pagination';
+import CustomTableHeader from '../../components/custom-table-header';
 
 const Sales = () => {
   let navigate = useNavigate();
+  const [headerValues, setHeaderValues] = useState({ type: '', value01: 0 });
   const [trHistoryLoadingState, setTrHistoryLoadingState] = useState(false);
   const [trHistory, setTrHistory] = useState([]);
   const [pageOffset, setPageOffset] = useState(0);
@@ -50,12 +52,18 @@ const Sales = () => {
 
   const onLimitChange = (e) => {
     const { value } = e.target;
-    setPageLimit(value);
+    setPageLimit(parseInt(value));
     setPageOffset(0);
   };
-  const fetchTrHistory = async (offset = 10, limit = 10) => {
+
+  // const setHeaderValues= (args) => {
+  //   setHeaderValue ({type: args.type, value01: args.value01});
+  // }
+
+  const fetchTrHistory = async () => {
     setTrHistoryLoadingState(true);
     const params = { ...inputs, ...page };
+    console.log('params', params);
     const { loading, response, value } = await client.getTrHistory(params);
     if (loading) return 'Loading...';
 
@@ -63,7 +71,16 @@ const Sales = () => {
     // return 'success';
     setTrHistoryLoadingState(false);
     if ('200' == response && '600' == value.data.GetTrHistory.error) {
-      setTrHistory(value.data.GetTrHistory.result);
+      // setTrHistory(value.data.GetTrHistory.result.rows);
+      setTrHistory(
+        sequencer.list(
+          value.data.GetTrHistory.result.rows,
+          value.data.GetTrHistory.result.count,
+          page.offset
+        )
+      );
+      setPageTotal(value.data.GetTrHistory.result.count);
+      setHeaderValues({ type: 'search', value01: value.data.GetTrHistory.result.count });
     } else {
       console.log('ng');
     }
@@ -87,13 +104,21 @@ const Sales = () => {
   // };
 
   useEffect(() => {
-    //
-
-    fetchTrHistory();
+    // fetchTrHistory();
     // let timer = setTimeout(() => {
     //   setProductListLoadingState(false);
     // }, 2000);
+    console.log('start');
   }, []);
+
+  useEffect(() => {
+    fetchTrHistory();
+  }, [pageOffset, pageLimit, pageTotal]);
+
+  useEffect(() => {
+    // console.log('pagetotal:', pageTotal);
+    console.log('trhis', trHistory);
+  }, [trHistory]);
 
   return (
     <Flex w="500px" h="100%" direction="column" justifyContent="start" alignItems="center">
@@ -101,6 +126,11 @@ const Sales = () => {
 
       <Flex h="30px" />
 
+      <CustomTableHeader
+        width="90%"
+        headerValues={headerValues}
+        onChangedCardHeaderLimitSelectDrop={onLimitChange}
+      />
       {trHistoryLoadingState ? (
         <>
           <Box h="400px">
@@ -110,23 +140,29 @@ const Sales = () => {
           </Box>
         </>
       ) : (
-        <Flex direction="column" width="90%" alignItems="center">
+        <Flex direction="column" width="100%" alignItems="center">
           <CustomTable
-            width="100%"
+            width="90%"
             columns={columns}
             cardHeader={''}
-            onChangedCardHeaderLimitSelectDrop={onLimitChange}
             headerHeight={ctHeaderHeight}
             data={trHistory}
+            page={page}
             dataHeight={ctDataHeight}
+            onPageChanged={(i) => {
+              if (i >= 0) {
+                setPageOffset(i * page.limit);
+              }
+              console.log('PageChanged: ', i);
+            }}
             fontSize="14px"
           />
-          <CustomPagination
+          {/* <CustomPagination
             data={trHistory}
             handler={(e) => {
               // paginationHandler(e);
             }}
-          />
+          /> */}
         </Flex>
       )}
     </Flex>

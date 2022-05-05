@@ -20,13 +20,14 @@ import { useTable, useSortBy, useFilters, useExpanded, usePagination } from 'rea
 import './table.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import Pagination from '@material-ui/lab/Pagination';
+import CustomTablePagination from './custom-table-pagination';
 
 const CustomTable = (props) => {
   const fontSize = props.fontSize;
   const columns = props.columns;
-  // const data = props.data;
+  const data = props.data;
   // const [columns, setColumns] = useState('');
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
   // const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
   //   columns,
@@ -37,7 +38,6 @@ const CustomTable = (props) => {
     getTableBodyProps,
     headerGroups,
     // rows, -> we change 'rows' to 'page'
-    page,
     prepareRow,
     visibleColumns,
     // below new props related to 'usePagination' hook
@@ -63,61 +63,64 @@ const CustomTable = (props) => {
     usePagination
   );
 
-  const numbering = (data) => {
-    data.map((v, i) => {
-      data[i].no = i + 1;
-    });
-    return data;
-  };
+  // const numbering = (data) => {
+  //   data.map((v, i) => {
+  //     data[i].no = i + 1;
+  //   });
+  //   return data;
+  // };
 
-  useEffect(() => {
-    var d = props.data;
-    setData(d);
-    // setColumns(props.columns);
-    // setData(numbering(data));
-    // setData(numbering(data));
-    var nd = numbering(d);
-    setData(nd);
-    // console.log(d);
-  }, [data]);
+  // useEffect(() => {
+  //   var d = props.data;
+  //   setData(d);
+  //   // setColumns(props.columns);
+  //   // setData(numbering(data));
+  //   // setData(numbering(data));
+  //   var nd = numbering(d);
+  //   setData(nd);
+  // setData(data);
+  //   // console.log(d);
+  // }, [data]);
 
   return (
-    <Flex direction="column">
+    <Flex width={props.width} direction="column">
       {/* CardHeader */}
-      <Flex
+      {/* <Flex
         direction="column"
         p="0px"
         borderWidth="1px"
         borderRadius="5px"
         boxShadow="md"
         overflowY="scroll"
-      >
-        <Flex p="2px" direction="row" justifyContent="space-between" alignItems="center">
-          <Text>aa</Text>
-          <Select
-            w="30%"
-            size="sm"
-            justifyContent="end"
-            onChange={(e) => props.onChangedCardHeaderLimitSelectDrop(e)}
-          >
-            <option value="10">10개</option>
-            <option value="20">20개</option>
-            <option value="30">30개</option>
-            <option value="50">50개</option>
-            <option value="100">1000개</option>
-          </Select>
-        </Flex>
-      </Flex>
+      > */}
+      {/* <Flex p="2px" direction="row" justifyContent="space-between" alignItems="center">
+        <Text>aa</Text>
+        <Select
+          w="30%"
+          size="sm"
+          justifyContent="end"
+          onChange={(e) => props.onChangedCardHeaderLimitSelectDrop(e)}
+        >
+          <option value={10}>10개</option>
+          <option value={20}>20개</option>
+          <option value={30}>30개</option>
+          <option value={50}>50개</option>
+          <option value={100}>100개</option>
+        </Select>
+      </Flex> */}
+      {/* </Flex> */}
       <Flex h="3px" />
       {/* Table */}
       <Flex
         direction="column"
-        p="0px"
+        pl="5px"
+        pr="5px"
         borderWidth="1px"
         borderRadius="5px"
-        boxShadow="lg"
+        boxShadow="sm"
         maxHeight="400px"
         overflowY="scroll"
+        background="white"
       >
         {/* <Pagination count={5} defaultPage={1} siblingCount={0} />
       <Pagination
@@ -160,6 +163,10 @@ const CustomTable = (props) => {
             })}
           </tbody>
         </table>
+      </Flex>
+      <Flex h="5px" />
+      <Flex justifyContent="center">
+        <CustomTablePagination page={props.page} onPageChanged={props.onPageChanged} />
       </Flex>
     </Flex>
   );

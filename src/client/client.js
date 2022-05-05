@@ -27,4 +27,15 @@ const getTrHistory = async (args) => {
   return r;
 };
 
+export class SeqConvert {
+  list(list, total, offset) {
+    if (list === null) return [];
+    return list.map((item, idx) => {
+      return { ...item, ['no']: total - (offset + idx) };
+    });
+  }
+}
+
+export const sequencer = new SeqConvert();
+
 export default { getProductList, getTrHistory };

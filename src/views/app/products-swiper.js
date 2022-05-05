@@ -83,8 +83,8 @@ const ProductSwiper = (props) => {
         {tmp.map(
           (v, i) =>
             i % 6 == 0 && (
-              <SwiperSlide>
-                <Wrap h="420px" p={'5px'} pt="0px" spacing={'10px'}>
+              <SwiperSlide key={i}>
+                <Wrap key={i} h="420px" p={'5px'} pt="0px" spacing={'10px'}>
                   {mapProducts(tmp, i, props.cartState)}
                   {/* {console.log(i)} */}
                 </Wrap>
@@ -117,7 +117,7 @@ const ProductSwiper = (props) => {
           (value, i) =>
             i < offset + 6 &&
             i >= offset && (
-              <WrapItem>
+              <WrapItem key={i}>
                 <ProductCard
                   key={i}
                   prd_code={value.prd_code}

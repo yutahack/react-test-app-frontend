@@ -62,13 +62,16 @@ const GetTrHistory = async (args) => {
       query GetTrHistory($offset:Int, $limit:Int, $conditions:GetTrHistoryConditions!){
         GetTrHistory(offset:$offset, limit: $limit, conditions:$conditions){
           error,
-          result{
-            seq,
-            tr_no,
-            tr_date,
-            amount,
-            pay_method,
-            del_yn
+          result {
+            count,
+            rows {
+              seq,
+              tr_no,
+              tr_date,
+              amount,
+              pay_method,
+              del_yn
+            }
           }
         }
       }
