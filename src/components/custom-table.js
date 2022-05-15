@@ -164,7 +164,7 @@ const CustomTable = (props) => {
           </tbody>
         </table>
       </Flex>
-      <Flex h="5px" />
+      <Flex h="10px" />
       <Flex justifyContent="center">
         <CustomTablePagination page={props.page} onPageChanged={props.onPageChanged} />
       </Flex>

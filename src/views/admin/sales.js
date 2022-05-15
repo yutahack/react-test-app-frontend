@@ -122,6 +122,7 @@ const Sales = () => {
 
   return (
     <Flex w="500px" h="100%" direction="column" justifyContent="start" alignItems="center">
+      <Flex h="30px" />
       <div style={{ fontSize: '32px' }}>매출조회</div>
 
       <Flex h="30px" />
