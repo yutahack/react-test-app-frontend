@@ -32,7 +32,7 @@ const Purchase = () => {
     { name: 'No', key: 'no', width: '15%' },
     { name: '상품', key: 'prd_name', width: '50%' },
     { name: '수량', key: 'amount', width: '20%' },
-    { name: '금액', key: 'prd_price', width: '20%' },
+    { name: '소계', key: 'prd_price', width: '20%' },
   ];
 
   const headerHeight = '50px';
@@ -107,7 +107,7 @@ const Purchase = () => {
                         if ('no' === v2.key) {
                           keyVal = seq;
                         } else if ('prd_price' === v2.key) {
-                          keyVal = priceToString(keyVal) + ' 원';
+                          keyVal = priceToString(keyVal * v1.amount) + ' 원';
                         }
 
                         // console.log('v', v1, v2);
