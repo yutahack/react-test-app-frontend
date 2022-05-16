@@ -19,7 +19,7 @@ const YnModal = (props) => {
     <>
       <Modal isOpen={props.isOpen} onClose={props.onClose}>
         <ModalOverlay />
-        <ModalContent borderRadius="20px">
+        <ModalContent mt="200px" borderRadius="20px">
           <ModalHeader>{props.title}</ModalHeader>
           {/* <ModalCloseButton /> */}
           <ModalBody>{props.body}</ModalBody>

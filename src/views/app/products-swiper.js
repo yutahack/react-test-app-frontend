@@ -82,9 +82,9 @@ const ProductSwiper = (props) => {
       <div>
         {tmp.map(
           (v, i) =>
-            i % 6 == 0 && (
+            i % 9 == 0 && (
               <SwiperSlide key={i}>
-                <Wrap key={i} h="420px" p={'5px'} pt="0px" spacing={'10px'}>
+                <Wrap key={i} h="615px" p={'5px'} pt="0px" spacing={'10px'}>
                   {mapProducts(tmp, i, props.cartState)}
                   {/* {console.log(i)} */}
                 </Wrap>
@@ -115,7 +115,7 @@ const ProductSwiper = (props) => {
       <>
         {products.map(
           (value, i) =>
-            i < offset + 6 &&
+            i < offset + 9 &&
             i >= offset && (
               <WrapItem key={i}>
                 <ProductCard
@@ -182,7 +182,7 @@ const ProductSwiper = (props) => {
     // >
     <>
       <>
-        <Tabs h="480px" pt="0px" isFitted variant="soft-rounded" colorScheme="green">
+        <Tabs h="680px" pt="0px" isFitted variant="soft-rounded" colorScheme="green">
           <Flex>
             <TabList
               alignItems="center"
@@ -241,9 +241,11 @@ const ProductSwiper = (props) => {
           ) : (
             <TabPanels>
               <TabPanel p="0px">
-                <Swiper pagination={true} className="mySwiper">
-                  {AddProducts({ prd_type: 'PT0001', cartState: props.cartState })}
-                </Swiper>
+                <Flex width="100%" pl="0">
+                  <Swiper pagination={true} className="mySwiper">
+                    {AddProducts({ prd_type: 'PT0001', cartState: props.cartState })}
+                  </Swiper>
+                </Flex>
               </TabPanel>
               <TabPanel p="0px">
                 <Flex width="100%" pl="0">

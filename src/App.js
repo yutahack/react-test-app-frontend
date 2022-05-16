@@ -29,8 +29,8 @@ function App() {
                 >
                   <Box
                     bg={'gray.50'}
-                    height={'620px'}
-                    mt={'25px'}
+                    height={'820px'}
+                    // mt={'25px'}
                     mb={'25px'}
                     w={'500px'}
                     rounded={'15px'}

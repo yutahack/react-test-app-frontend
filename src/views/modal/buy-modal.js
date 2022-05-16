@@ -20,7 +20,7 @@ const BuyModal = (props) => {
     <>
       <Modal isOpen={props.isOpen} onClose={props.onClose}>
         <ModalOverlay />
-        <ModalContent borderRadius="30px">
+        <ModalContent mt="200px" borderRadius="30px">
           {/* <ModalHeader>{props.title}</ModalHeader> */}
           <ModalHeader pt="30px" pl="40px" pr="40px" pb="0px">
             <Box h="50px" bg="gray.500" rounded="full" alignContent="center" boxShadow="base">
