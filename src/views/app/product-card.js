@@ -232,7 +232,6 @@ const ProductCard = (props) => {
         borderRadius="15px"
         boxShadow={'base'}
         bgColor={'white'}
-        onClick={() => {}}
         border="1px"
         borderColor="#ccd0d5"
         lineHeight="1.2"

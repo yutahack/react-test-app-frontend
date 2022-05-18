@@ -158,7 +158,7 @@ const Purchase = () => {
     return (
       <>
         {/* <Box boxShadow="inner" bg="gray.100" h="380px"> */}
-        <Flex width="100%" h="280px" direction="column" alignItems="center">
+        <Flex width="100%" h="480px" direction="column" alignItems="center">
           <ProductListHeader width="98%" headers={props.headers} />
 
           <SortList width="98%" data={props.data} />
@@ -298,15 +298,7 @@ const Purchase = () => {
 
         {/* <Flex direction={'column'} width={'500px'} pt="0px" pl="10px" pr="10px"> */}
 
-        <Box
-          w="480px"
-          borderRadius="0"
-          boxShadow="base"
-          bg="gray.300"
-          borderRadius="10px"
-          p="10px"
-          m="10px"
-        >
+        <Box w="480px" boxShadow="base" bg="gray.300" borderRadius="10px" p="10px" m="10px">
           <Text
             fontSize="20px"
             fontWeight="bold"
@@ -322,7 +314,6 @@ const Purchase = () => {
 
         <Box
           w="480px"
-          borderRadius="0"
           boxShadow="base"
           bg="gray.300"
           borderRadius="10px"
@@ -355,7 +346,6 @@ const Purchase = () => {
         <Box
           w="480px"
           h="95px"
-          borderRadius="0"
           boxShadow="base"
           bg="gray.300"
           borderRadius="10px"

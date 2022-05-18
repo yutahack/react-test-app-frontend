@@ -92,7 +92,7 @@ const Success = () => {
           <AnimatedTitle />
         </Flex>
         <Flex w="50%" direction="column">
-          <SampleSpringA />
+          {/* <SampleSpringA /> */}
         </Flex>
       </Flex>
     </>
