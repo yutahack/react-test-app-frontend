@@ -46,7 +46,7 @@
 
 .fade-enter {
   opacity: 0;
-  transform: translate(-50px, 0px);
+  transform: translate(-20px, 0px);
   z-index: 1;
 }
 .fade-enter.fade-enter-active {
@@ -61,7 +61,7 @@
 }
 .fade-exit.fade-exit-active {
   opacity: 0;
-  transform: translate(25px, 0px);
+  transform: translate(0px, 0px);
 
   transition: opacity 0ms ease-out, transform 500ms ease;
 }

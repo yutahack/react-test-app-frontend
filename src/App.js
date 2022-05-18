@@ -13,14 +13,24 @@ function App() {
         {/* <Router /> */}
         <BrowserRouter>
           <div className="Main">
-            <Flex height={'100vh'} justifyContent={'center'} pt="35px">
+            <Flex
+              height={'100vh'}
+              justifyContent={'center'}
+              alignItems="center"
+              direction="column"
+              pt="35px"
+            >
               <Box
-                bg={'gray.200'}
+                // bg={'black.400'}
                 w={'550px'}
-                height={'90vh'}
+                // height={'100vh'}
                 roundedTopLeft={'25px'}
                 roundedTopRight={'25px'}
                 shadow={'dark-lg'}
+                pt="25px"
+                // bg="blackAlpha.900"
+                bg="blackAlpha.800"
+                h="870px"
               >
                 <Flex
                   //   justifyContent={'center'}
@@ -42,6 +52,8 @@ function App() {
                   </Box>
                 </Flex>
               </Box>
+
+              <Box w="550px" shadow="dark-lg" pt="25px" bg="gray.300" h="100%"></Box>
             </Flex>
           </div>
         </BrowserRouter>
