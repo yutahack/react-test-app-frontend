@@ -46,18 +46,18 @@
 
 .fade-enter {
   opacity: 0;
-  transform: translate(-20px, 0px);
-  z-index: 1;
+  transform: translate(-200px, 0px);
+  /* z-index: 1; */
 }
 .fade-enter.fade-enter-active {
   opacity: 1;
-  transform: translate(0, 0);
+  transform: translate(0px, 0px);
 
   transition: opacity 500ms ease-out, transform 500ms ease;
 }
 .fade-exit {
   opacity: 1;
-  transform: translate(0, 0);
+  transform: translate(0px, 0px);
 }
 .fade-exit.fade-exit-active {
   opacity: 0;

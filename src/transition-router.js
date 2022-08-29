@@ -18,7 +18,7 @@ const TransitionRouter = () => {
   return (
     <>
       {/* <BrowserRouter> */}
-      <TransitionGroup className="transition-group">
+      <TransitionGroup className="transition-group" style={{ height: '100%' }}>
         <CSSTransition key={location.pathname} classNames="fade" timeout={500}>
           <Routes location={location}>
             {/* <Route path="/a" element={<PrivateRouter />} />
