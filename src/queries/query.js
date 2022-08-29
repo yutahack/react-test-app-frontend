@@ -85,4 +85,23 @@ const GetTrHistory = async (args) => {
   return result;
 };
 
+const InsertTrHistory = async (args) => {
+  const q = `
+      mutation InsertTrHistory($input:InsertTrHistoryRequest!){
+        InsertTrHistory(input: $input){
+          error,
+          result
+          
+        }
+      }
+    `;
+
+  const p = { offset: args.offset, limit: args.limit, conditions: args.conditions };
+  const result = await fetchGraphQL(q, p);
+
+  console.log('RESULT', result);
+
+  return result;
+};
+
 export default { UserLogin, GetProductList, GetTrHistory };
