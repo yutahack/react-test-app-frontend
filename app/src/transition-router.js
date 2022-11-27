@@ -1,6 +1,14 @@
 import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { BrowserRouter, Routes, Route, Switch, useLocation, useNavigate } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Switch,
+  useLocation,
+  useNavigate,
+  Navigate,
+} from 'react-router-dom';
 import { Flex } from '@chakra-ui/react';
 import Login from './views/login/login';
 import Main from './views/main/main';
@@ -21,11 +29,12 @@ const TransitionRouter = () => {
   let navigate = useNavigate();
 
   const RequireAuth = (props) => {
-    if (authority !== '') {
-      return props.component;
+    const auth = window.localStorage.getItem('authority');
+    if (auth !== '""') {
+      return true;
+    } else {
+      return false;
     }
-
-    return <Login />;
   };
 
   return (
@@ -37,7 +46,8 @@ const TransitionRouter = () => {
         {/* <Route path="/a" element={<PrivateRouter />} />
             <Route path="/" element={<></>} /> */}
         <Route path="/Signin" element={<Login />} />
-        <Route path="/Main" element={<RequireAuth component={<Main />} />} />
+        <Route path="/Main" element={RequireAuth() ? <Main /> : <Navigate to="/Signin" />} />
+        {/* <Route path="/Main" element={<Main />} /> */}
         <Route path="/Purchase" element={<Purchase />} />
         <Route path="/Purchasing" element={<Purchasing />} />
         <Route path="/Success" element={<Success />} />
