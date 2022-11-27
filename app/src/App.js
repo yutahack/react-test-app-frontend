@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Router from './router';
+// import Router from './router';
 import TransitionRouter from './transition-router';
 import { BrowserRouter } from 'react-router-dom';
 import Main from './views/main/main';

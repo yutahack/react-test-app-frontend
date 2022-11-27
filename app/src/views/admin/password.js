@@ -31,6 +31,7 @@ const Password = () => {
   let navigate = useNavigate();
   const [pw, setPw] = useState('');
   const [showClearButton, setShowClearButton] = useState('collapse');
+  const [authority, setAuthority] = useLocalStorage('authority', '');
 
   const onNumKeyClick = (val) => {
     if (pw.length < 8) {
@@ -199,6 +200,22 @@ const Password = () => {
         <Flex h="30px" />
 
         <KeyPad />
+
+        <Flex h="30px" />
+        <Flex>
+          <Button
+            w="260px"
+            h="40px"
+            bg="gray"
+            borderRadius="full"
+            onClick={() => {
+              setAuthority('');
+              navigate('/Signin');
+            }}
+          >
+            <div style={{ color: 'White' }}>LOGOUT</div>
+          </Button>
+        </Flex>
       </Flex>
     </>
   );

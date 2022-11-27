@@ -1,4 +1,5 @@
 const REMOTE_SERVER_ADDRESS = process.env.REACT_APP_REMOTE_SERVER_ADDRESS;
+const CRYPTO_KEY = process.env.REACT_APP_CRYPTO_KEY;
 
 switch (process.env.NODE_ENV) {
   case 'development':
@@ -12,4 +13,5 @@ switch (process.env.NODE_ENV) {
 
 module.exports = {
   REMOTE_SERVER_ADDRESS,
+  CRYPTO_KEY,
 };

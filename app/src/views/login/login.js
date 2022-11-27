@@ -108,6 +108,7 @@ const Login = () => {
   }, [userLoadingState]);
 
   useEffect(() => {
+    setAuthority('');
     // 윈도우 크기 취득
     const getRect = document.getElementById('mainFrame');
     let h = getRect.getBoundingClientRect().height - 20;
