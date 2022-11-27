@@ -46,7 +46,7 @@
 
 .fade-enter {
   opacity: 0;
-  transform: translate(-200px, 0px);
+  transform: translate(0px, 0px);
   /* z-index: 1; */
 }
 .fade-enter.fade-enter-active {
