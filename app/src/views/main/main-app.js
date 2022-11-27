@@ -21,7 +21,14 @@ import CustomToast from '../../components/custom-toast';
 import useLocalStorage from '../../utils/local-storage';
 
 const MainApp = () => {
-  const toast = useToast();
+  const [toastHeight, setToastHeight] = useState('800px');
+
+  const toast = useToast({
+    position: 'top',
+    containerStyle: {
+      marginTop: toastHeight,
+    },
+  });
   // Global cart list
   const [cartList, setCartList] = useState([]);
   const [localCartList, setLocalCartList] = useLocalStorage('localCartList', []);
@@ -32,7 +39,7 @@ const MainApp = () => {
       title: props.title,
       status: props.status,
       isClosable: false,
-      position: 'bottom',
+      // position: 'bottom',
       // render: () => (
       //   <>
       //     {/* <Box color='white' p={3} bg='blue.500'>
@@ -41,6 +48,9 @@ const MainApp = () => {
       //     <CustomToast />
       //   </>
       // ),
+      containerStyle: {
+        marginTop: toastHeight,
+      },
     });
   };
 

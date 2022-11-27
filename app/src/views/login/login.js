@@ -15,7 +15,9 @@ import {
 } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
 import query from '../../queries/query';
-
+import useLocalStorage from '../../utils/local-storage';
+import { useNavigate } from 'react-router-dom';
+import CryptoUtils from '../../utils/crypto-utils';
 // const _sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 // const timer = async () => {
 //   await _sleep(1000);
@@ -26,8 +28,20 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const toast = useToast();
+  const [toastHeight, setToastHeight] = useState('800px');
+
+  const toast = useToast({
+    position: 'top',
+    containerStyle: {
+      marginTop: toastHeight,
+    },
+  });
+
   const [userLoadingState, setUserLoadingState] = useState(false);
+
+  const [authority, setAuthority] = useLocalStorage('authority', '');
+
+  let navigate = useNavigate();
 
   const UserLogin = async (username, password) => {
     // await timer();
@@ -48,6 +62,13 @@ const Login = () => {
         status: 'success',
         isClosable: false,
       });
+
+      // 로그인에 성공하면 local storage에 토큰 암호화 후 기록하기
+      console.log(value.data.Login.result.token);
+      console.log(CryptoUtils.encrypt(value.data.Login.result.token));
+      setAuthority(CryptoUtils.encrypt(value.data.Login.result.token));
+
+      navigate('/Main');
     } else {
       toast.closeAll();
       toast({
@@ -56,6 +77,9 @@ const Login = () => {
         status: 'error',
         isClosable: false,
       });
+
+      // setAuthority('aaa');
+      // console.log(CryptoUtils.encrypt('ABCD'));
     }
   };
 
@@ -83,9 +107,17 @@ const Login = () => {
     //
   }, [userLoadingState]);
 
+  useEffect(() => {
+    // 윈도우 크기 취득
+    const getRect = document.getElementById('mainFrame');
+    let h = getRect.getBoundingClientRect().height - 20;
+    setToastHeight(h + 'px');
+  }, []);
+
   return (
     <>
       <Flex
+        id="mainFrame"
         height={'100%'}
         w="500px"
         alignItems={'center'}
