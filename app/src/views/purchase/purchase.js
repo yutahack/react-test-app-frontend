@@ -20,6 +20,7 @@ import useLocalStorage from '../../utils/local-storage';
 import { priceToString } from '../../utils/utils';
 import CustomButtonR from '../../components/custom-button-r';
 import { useNavigate } from 'react-router-dom';
+import query from '../../queries/query';
 
 const Purchase = () => {
   const [cartList, setCartList] = useState([]);
@@ -46,6 +47,7 @@ const Purchase = () => {
             {props.headers.map((v, i) => {
               return (
                 <Flex
+                  key={i}
                   w={v.width}
                   h="100%"
                   justifyItems="center"
@@ -91,60 +93,59 @@ const Purchase = () => {
         <Flex width={props.width} maxHeight="100px" direction="column">
           {output.map((v1, i) => {
             return (
-              <>
-                <Flex>
-                  <Box
-                    w="100%"
-                    h={listHeight}
-                    bg="gray.100"
-                    boxShadow="inner"
-                    borderRadius="10px"
-                    mb="5px"
-                  >
-                    <Flex h="100%">
-                      {columnHeaders.map((v2, i) => {
-                        let keyVal = Reflect.get(v1, v2.key);
-                        if ('no' === v2.key) {
-                          keyVal = seq;
-                        } else if ('prd_price' === v2.key) {
-                          keyVal = priceToString(keyVal * v1.amount) + ' 원';
-                        }
+              <Flex key={i}>
+                <Box
+                  w="100%"
+                  h={listHeight}
+                  bg="gray.100"
+                  boxShadow="inner"
+                  borderRadius="10px"
+                  mb="5px"
+                >
+                  <Flex h="100%">
+                    {columnHeaders.map((v2, i) => {
+                      let keyVal = Reflect.get(v1, v2.key);
+                      if ('no' === v2.key) {
+                        keyVal = seq;
+                      } else if ('prd_price' === v2.key) {
+                        keyVal = priceToString(keyVal * v1.amount) + ' 원';
+                      }
 
-                        // console.log('v', v1, v2);
-                        // console.log('kv', keyVal);
-                        return (
-                          <Flex
-                            w={v2.width}
-                            h="100%"
-                            justifyItems="center"
-                            alignContent="center"
-                            alignItems="center"
-                          >
-                            {'prd_name' === v2.key ? (
-                              <Flex
-                                w="100%"
-                                h="100%"
-                                justifyContent="center"
-                                alignItems="center"
-                                pl="10px"
-                                pr="10px"
-                              >
-                                <Image src={img_src(v1.prd_code)} w="30%" />
-                                <Text w="60%">{keyVal}</Text>
-                              </Flex>
-                            ) : (
-                              <Flex w="100%" h="100%" justifyContent="center" alignItems="center">
-                                <Text w="100%">{keyVal}</Text>
-                              </Flex>
-                            )}
-                          </Flex>
-                        );
-                      })}
-                      {inc_seq()}
-                    </Flex>
-                  </Box>
-                </Flex>
-              </>
+                      // console.log('v', v1, v2);
+                      // console.log('kv', keyVal);
+                      return (
+                        <Flex
+                          key={i}
+                          w={v2.width}
+                          h="100%"
+                          justifyItems="center"
+                          alignContent="center"
+                          alignItems="center"
+                        >
+                          {'prd_name' === v2.key ? (
+                            <Flex
+                              w="100%"
+                              h="100%"
+                              justifyContent="center"
+                              alignItems="center"
+                              pl="10px"
+                              pr="10px"
+                            >
+                              <Image src={img_src(v1.prd_code)} w="30%" />
+                              <Text w="60%">{keyVal}</Text>
+                            </Flex>
+                          ) : (
+                            <Flex w="100%" h="100%" justifyContent="center" alignItems="center">
+                              <Text w="100%">{keyVal}</Text>
+                            </Flex>
+                          )}
+                        </Flex>
+                      );
+                    })}
+                    {inc_seq()}
+                  </Flex>
+                </Box>
+              </Flex>
             );
           })}
         </Flex>
@@ -266,6 +267,19 @@ const Purchase = () => {
     setPayment(method);
   };
 
+  const saveTrHistory = async () => {
+    console.log(payment);
+    console.log(String(totalPrice));
+
+    const { loading, response, value } = await query.InsertTrHistory({
+      amount: String(totalPrice),
+      pay_method: payment,
+    });
+    if (loading) return 'Loading...';
+
+    console.log('RESP', response);
+  };
+
   useEffect(() => {
     var tmp = [...localCartList];
     setCartList(tmp);
@@ -372,6 +386,7 @@ const Purchase = () => {
               activeColor="red.600"
               mr="00px"
               onClick={() => {
+                saveTrHistory();
                 navigate('/Purchasing');
                 console.log(navigate);
               }}

@@ -96,7 +96,10 @@ const InsertTrHistory = async (args) => {
       }
     `;
 
-  const p = { offset: args.offset, limit: args.limit, conditions: args.conditions };
+  // const p = { offset: args.offset, limit: args.limit, conditions: args.conditions };
+  const p = {
+    input: { tr_no: '0000', amount: args.amount, pay_method: args.pay_method },
+  };
   const result = await fetchGraphQL(q, p);
 
   console.log('RESULT', result);
@@ -104,4 +107,4 @@ const InsertTrHistory = async (args) => {
   return result;
 };
 
-export default { UserLogin, GetProductList, GetTrHistory };
+export default { UserLogin, GetProductList, GetTrHistory, InsertTrHistory };
