@@ -37,6 +37,25 @@ const Success = () => {
     );
   };
 
+  const AnimatedMessage = () => {
+    const spring = useSpring({
+      opacity: 1,
+      marginTop: 0,
+      from: { opacity: 0, marginTop: -20 },
+      delay: 200,
+      config: {
+        duration: '300',
+      },
+    });
+    return (
+      <animated.div style={spring}>
+        <Text fontSize="32px" mb="50px">
+          이용해주셔서 감사합니다.
+        </Text>
+      </animated.div>
+    );
+  };
+
   const SampleSpringA = () => {
     // (A)
     const [enter, setEnter] = useState(false);
@@ -88,8 +107,11 @@ const Success = () => {
         {/* <Text fontSize="36px" mb="50px">
           결제가 완료되었습니다.
         </Text> */}
-        <Flex height="300px">
+        <Flex height="100px">
           <AnimatedTitle />
+        </Flex>
+        <Flex height="50px">
+          <AnimatedMessage />
         </Flex>
         <Flex w="50%" direction="column">
           {/* <SampleSpringA /> */}
